@@ -554,6 +554,44 @@ nav ul li:nth-child(6) { transition-delay: 0.6s; }
     z-index: 1;
 }
 
+@media (max-width: 768px) {
+    /* Timeline responsiva */
+    .timeline {
+        padding-left: 0; /* Remove o padding que criava espaço para a linha */
+    }
+    
+    .timeline::before {
+        display: none; /* Remove a linha azul */
+    }
+    
+    .timeline-date {
+        position: relative;
+        left: 0;
+        width: 100%;
+        text-align: left;
+        padding-right: 0;
+        margin-bottom: 10px;
+        color: var(--secondary-color);
+    }
+    
+    .timeline-content {
+        padding: 15px;
+    }
+    
+    .timeline-content::before {
+        display: none; /* Remove a setinha */
+    }
+    
+    .timeline-item::after {
+        display: none; /* Remove o ponto azul */
+    }
+    
+    .timeline-item {
+        margin-bottom: 30px;
+        padding-left: 0;
+    }
+}
+
 /* Projects Section */
 .projects-grid {
     display: grid;
