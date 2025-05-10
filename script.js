@@ -83,4 +83,57 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+    
+    // Menu Hamburguer - só adiciona se for mobile
+    const navList = document.querySelector('nav ul');
+    
+    // Verificar se é dispositivo móvel e adicionar o botão do menu
+    if (window.innerWidth <= 768) {
+        const menuToggle = document.createElement('div');
+        menuToggle.className = 'menu-toggle';
+        menuToggle.innerHTML = '<i class="fas fa-bars"></i>';
+        document.querySelector('nav').appendChild(menuToggle);
+        
+        menuToggle.addEventListener('click', () => {
+            // Força o redesenho da animação
+            if (navList.classList.contains('active')) {
+                navList.style.animation = 'slideUp 0.3s ease forwards';
+                setTimeout(() => {
+                    navList.classList.remove('active');
+                }, 280); // Um pouco menor que a duração da animação
+            } else {
+                navList.classList.add('active');
+                navList.style.animation = 'slideDown 0.3s ease forwards';
+            }
+            
+            // Anima o ícone
+            menuToggle.classList.toggle('active');
+            
+            // Troca o ícone com animação
+            const icon = menuToggle.querySelector('i');
+            if (menuToggle.classList.contains('active')) {
+                setTimeout(() => {
+                    icon.classList.replace('fa-bars', 'fa-times');
+                }, 150);
+            } else {
+                setTimeout(() => {
+                    icon.classList.replace('fa-times', 'fa-bars');
+                }, 150);
+            }
+        });
+        
+        // Fecha o menu ao clicar em um link
+        document.querySelectorAll('nav ul li a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navList.style.animation = 'slideUp 0.3s ease forwards';
+                    setTimeout(() => {
+                        navList.classList.remove('active');
+                        menuToggle.classList.remove('active');
+                        menuToggle.querySelector('i').classList.replace('fa-times', 'fa-bars');
+                    }, 280);
+                }
+            });
+        });
+    }
 });

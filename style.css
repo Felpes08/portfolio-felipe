@@ -142,6 +142,254 @@ nav ul li a:hover {
     background: var(--light-color);
 }
 
+@media (max-width: 600px) {
+    header {
+        padding: 20px 0;
+    }
+    
+    header h1 {
+        font-size: 28px;
+    }
+    
+    header .subtitle {
+        font-size: 16px;
+    }
+}
+
+/* Menu Hamburguer */
+.menu-toggle {
+    display: none;
+    cursor: pointer;
+    padding: 15px;
+    position: absolute;
+    right: 20px;
+    top: 10px;
+    z-index: 101;
+}
+
+.menu-toggle i {
+    font-size: 24px;
+    color: var(--dark-color);
+    transition: transform 0.3s ease;
+}
+
+/* Apenas para mobile */
+@media (max-width: 768px) {
+/* Esconde o menu padrão em mobile */
+    nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background: white;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        padding: 0;
+        animation: slideUp 0.3s ease forwards;
+    }
+    
+    /* Mostra o menu quando ativo */
+    nav ul.active {
+        display: flex;
+        animation: slideDown 0.3s ease forwards;
+    }
+    
+    /* Estilos dos itens do menu em mobile */
+    nav ul li {
+        margin: 0;
+        text-align: center;
+        padding: 15px 0;
+        border-bottom: 1px solid var(--light-color);
+        opacity: 0;
+        transform: translateX(-10px);
+        transition: all 0.3s ease;
+    }
+    
+    nav ul.active li {
+        opacity: 1;
+        transform: translateX(0);
+    }
+    
+    /* Delay para animação dos itens */
+    nav ul.active li:nth-child(1) { transition-delay: 0.1s; }
+    nav ul.active li:nth-child(2) { transition-delay: 0.2s; }
+    nav ul.active li:nth-child(3) { transition-delay: 0.3s; }
+    nav ul.active li:nth-child(4) { transition-delay: 0.4s; }
+    nav ul.active li:nth-child(5) { transition-delay: 0.5s; }
+    nav ul.active li:nth-child(6) { transition-delay: 0.6s; }
+    
+    nav ul li a {
+        width: 100%;
+        display: block;
+        padding: 10px;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+    
+    /* Ajuste para o sticky header em mobile */
+    nav.sticky {
+        position: fixed;
+        height: 60px;
+    }
+    
+    nav.sticky .menu-toggle {
+        top: 10px;
+    }
+    
+    nav.sticky ul.active {
+        top: 60px;
+    }
+    
+    /* Rotação do ícone quando ativo */
+    .menu-toggle.active i {
+        transform: rotate(90deg);
+    }
+}
+
+/* Garante que o menu normal aparece em desktop */
+@media (min-width: 769px) {
+    nav ul {
+        display: flex !important; /* Sobrescreve qualquer display: none */
+        flex-direction: row;
+        position: static;
+        background: transparent;
+        box-shadow: none;
+    }
+    
+    nav ul li {
+        opacity: 1 !important;
+        transform: none !important;
+        border-bottom: none !important;
+    }
+    
+    .menu-toggle {
+        display: none !important;
+    }
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background: white;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        padding: 0;
+    }
+    
+    nav ul.active {
+        display: flex;
+    }
+    
+    nav ul li {
+        margin: 0;
+        text-align: center;
+        padding: 15px 0;
+        border-bottom: 1px solid var(--light-color);
+    }
+    
+    nav ul li a {
+        width: 100%;
+        display: block;
+        padding: 10px;
+    }
+    
+    .menu-toggle {
+        display: block;
+    }
+    
+    /* Ajuste para o sticky header em mobile */
+    nav.sticky {
+        position: fixed;
+        height: 60px;
+    }
+    
+    nav.sticky .menu-toggle {
+        top: 10px;
+    }
+    
+    nav.sticky ul.active {
+        top: 60px;
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+}
+
+@media (max-width: 768px) {
+    nav ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 60px;
+        left: 0;
+        background: white;
+        box-shadow: 0 10px 15px rgba(0,0,0,0.1);
+        padding: 0;
+        animation: slideUp 0.3s ease forwards;
+    }
+    
+    nav ul.active {
+        display: flex;
+        animation: slideDown 0.3s ease forwards;
+    }
+    
+    /* Adicione transição para o ícone */
+    .menu-toggle i {
+        transition: transform 0.3s ease;
+    }
+    
+    .menu-toggle.active i {
+        transform: rotate(90deg);
+    }
+}
+
+/* Efeito de fade nos itens do menu */
+nav ul li {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.3s ease;
+}
+
+nav ul.active li {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Delay para cada item */
+nav ul li:nth-child(1) { transition-delay: 0.1s; }
+nav ul li:nth-child(2) { transition-delay: 0.2s; }
+nav ul li:nth-child(3) { transition-delay: 0.3s; }
+nav ul li:nth-child(4) { transition-delay: 0.4s; }
+nav ul li:nth-child(5) { transition-delay: 0.5s; }
+nav ul li:nth-child(6) { transition-delay: 0.6s; }
+
 /* About Section */
 .profile {
     display: flex;
@@ -579,5 +827,11 @@ footer {
     .timeline-item::after {
         left: -28px;
         top: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 50px 0;
     }
 }
